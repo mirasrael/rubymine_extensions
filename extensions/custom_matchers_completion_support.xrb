@@ -1,0 +1,52 @@
+require File.dirname(__FILE__) + "/../rm_unloadable_extension.rb"
+
+include Java
+
+import org.jetbrains.plugins.ruby.ruby.codeInsight.RubyDynamicExtensionsManager unless defined? RubyDynamicExtensionsManager
+import org.jetbrains.plugins.ruby.ruby.codeInsight.RubyInsertHandlerExtensionsManager unless defined? RubyInsertHandlerExtensionsManager
+import org.jetbrains.plugins.ruby.rails.codeInsight.RailsTypeUtil unless defined? RailsTypeUtil
+import org.jetbrains.plugins.ruby.ruby.codeInsight.types.RSymbolBasedTypeComputable unless defined? RSymbolBasedTypeComputable
+import org.jetbrains.plugins.ruby.ruby.codeInsight.types.RPsiBasedTypeComputable unless defined? RPsiBasedTypeComputable
+
+class CallType
+  def do_call
+
+  end
+
+  def method_missing(method, *args)
+
+  end
+end
+
+class CustomMatchersCompletionSupport < RmUnloadableExtension
+  def initialize
+
+  end
+
+  def load_extension
+    describe "CallType" do
+      set_dynamic_methods "hello"
+      set_dynamic_methods "recall"
+      set_dynamic_methods "test_one"
+      set_dynamic_methods "test_two"
+    end
+
+    describe "QualityMeasures::STK::STK1" do
+      set_dynamic_methods "clinical_trial?"
+    end
+
+    #register_editor_action "do_something_strange",
+    #  :text => "Do Something Strange",
+    #  :description => "Something done.",
+    #  :enable_in_modal_context => true,
+    #  :shortcut => "control shift M" do |editor, file|
+    #  editor.replace_selection_text("HA HA")
+    #end
+
+  end
+
+  def unload_extension
+    #unregister_editor_action ""
+    #end
+  end
+end
